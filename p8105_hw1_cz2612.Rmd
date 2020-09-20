@@ -44,11 +44,32 @@ as.numeric(pull(prob1_df, char_vec))
 as.numeric(pull(prob1_df, factor_vec))
 ```
 
+I can convert the logical vector.
+
 ```{r}
 as.numeric(pull(prob1_df, samp_gt_0)) * pull(prob1_df, samp)
 as.factor(pull(prob1_df, samp_gt_0)) * pull(prob1_df, samp)
 as.numeric(as.factor(pull(prob1_df, samp_gt_0))) * pull(prob1_df, samp)
 ```
 
+
+## Problem 2
+
+The code chunk below loads the penguins dataset and generates a plot.
+
+```{r penguins_df}
+data("penguins", package = "palmerpenguins")
+```
+
+This dataset has the following variables `r ls(penguins)`
+
+This dataset has `r nrow(penguins)` rows and `r ncol(penguins)` columns.
+
+The mean flipper length is `r mean(flipper_length_mm)`
+
+
+```{r plot_penguins}
+ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species )) + geom_point()
+```
 
 
