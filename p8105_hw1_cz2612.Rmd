@@ -72,4 +72,5 @@ The mean flipper length is `r mean(flipper_length_mm)`
 ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species )) + geom_point()
 ```
 
+ggsave
 
