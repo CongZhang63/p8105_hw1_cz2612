@@ -35,7 +35,7 @@ mean(pull(prob1_df, char_vec))
 mean(pull(prob1_df, factor_vec))
 ```
 
-I can take the mean of numbers and logical but not character or factor. 
+Take the mean of numbers and logical but not character or factor. 
 
 ```{r try_numeric, eval = FALSE}
 as.numeric(pull(prob1_df, samp))
@@ -44,7 +44,7 @@ as.numeric(pull(prob1_df, char_vec))
 as.numeric(pull(prob1_df, factor_vec))
 ```
 
-I can convert the logical vector.
+Convert the logical vector.
 
 ```{r}
 as.numeric(pull(prob1_df, samp_gt_0)) * pull(prob1_df, samp)
@@ -57,20 +57,38 @@ as.numeric(as.factor(pull(prob1_df, samp_gt_0))) * pull(prob1_df, samp)
 
 The code chunk below loads the penguins dataset and generates a plot.
 
+Load the penguins dataset.
+
 ```{r penguins_df}
 data("penguins", package = "palmerpenguins")
 ```
 
-This dataset has the following variables `r ls(penguins)`
 
-This dataset has `r nrow(penguins)` rows and `r ncol(penguins)` columns.
+Write description of the dataset.
 
-The mean flipper length is `r mean(flipper_length_mm)`
+* This dataset has following variables: `r ls(penguins)`.
 
+* Here are some values of important variables:
+
+  * Excluding missing values, the range of variable bill_length_mm is (`r min(pull(penguins, bill_length_mm), na.rm = TRUE)`,`r max(pull(penguins, bill_length_mm), na.rm = TRUE)`) and the median is `r median(pull(penguins, bill_length_mm), na.rm = TRUE)`.
+  
+  * Excluding missing values, the range of variable flipper_length_mm is (`r min(pull(penguins, flipper_length_mm), na.rm = TRUE)`,`r max(pull(penguins, flipper_length_mm), na.rm = TRUE)`) and the median is `r median(pull(penguins, flipper_length_mm), na.rm = TRUE)`.
+  
+  * The penguins belong to following species: `r levels(pull(penguins, species))`.
+  
+* This dataset has `r nrow(penguins)` rows and `r ncol(penguins)` columns.
+
+* Excluding missing values, the mean flipper length is `r mean(pull(penguins, flipper_length_mm), na.rm = TRUE)`.
+
+
+Generate a scatterplot.
 
 ```{r plot_penguins}
 ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species )) + geom_point()
 ```
 
-ggsave
+Export the scatterplot.
 
+```{r export_plot}
+ggsave("penguins_scatterplot.pdf")
+```
